@@ -1,18 +1,9 @@
 @font-face {
-  font-family: "Baloo 2";
+  font-family: "Source Sans Pro";
   font-style: normal;
-  font-weight: normal;
-  src: local("Baloo 2 Regular"), local("Baloo-2-Regular"),
-    url("../../fonts/baloo-2-v1-latin-regular.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Baloo 2";
-  font-style: normal;
-  font-weight: 500;
-  src: local("Baloo 2 Medium"), local("Baloo-2-Medium"),
-    url("../../fonts/baloo-2-v1-latin-500.woff2") format("woff2");
+  src: local("Source Sans Pro"), local("Source-Sans-Pro"),
+    url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;900&display=swap")
+      format("woff2");
   font-display: swap;
 }
 
@@ -23,13 +14,15 @@
   --color-text: #412d86;
   --color-light: #fff;
   --color-anchor: #3a00ff;
-  --font-family: "Baloo 2", sans-serif;
-  --font-weight-strong: 500;
+  --font-family: "Source Sans Pro", sans-serif;
+  --small-line-height: 1.2;
+  --base-line-height: 1.5;
+  --font-weight-strong: 900;
   --font-size-h1: 4.2rem;
   --font-size-h2: 3.15rem;
   --font-size-h3: 2rem;
   --font-size-h4: 1.35rem;
-  --font-size-text: 1.15rem;
+  --font-size-text: 1.125rem;
   --border-radius: 8px;
 }
 
@@ -51,7 +44,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   margin: 0;
 }
 
@@ -92,34 +86,80 @@ select {
   }
 }
 
+h1 {
+  line-height: var(--small-line-height);
+  font-weight: var(--font-weight-strong);
+  font-size: 3rem;
+}
+
+@supports (font-size: clamp(3rem, 4vw, 3.5rem)) {
+  h1 {
+    font-size: clamp(3rem, 4vw, 3.5rem);
+  }
+}
+
+h2 {
+  line-height: var(--small-line-height);
+  font-weight: var(--font-weight-strong);
+  font-size: 2.5rem;
+}
+
+@supports (font-size: clamp(2.5rem, 4vw, 3rem)) {
+  h2 {
+    font-size: clamp(2.5rem, 4vw, 3rem);
+  }
+}
+
+h3 {
+  line-height: var(--small-line-height);
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+@supports (font-size: clamp(1.875rem, 4vw, 2.5rem)) {
+  h3 {
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
+  }
+}
+
+h4 {
+  line-height: var(--small-line-height);
+  font-weight: var(--font-weight-strong);
+  font-size: 1.875rem;
+}
+
+@supports (font-size: clamp(1.5rem, 4vw, 1.875rem)) {
+  h4 {
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
+  }
+}
+
+p {
+  line-height: var(--base-line-height);
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+@supports (font-size: clamp(1.25rem, 4vw, 1.5rem)) {
+  p {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+}
+
 h1,
 h2,
 h3,
 h4 {
-  font-weight: var(--font-weight-strong);
-  line-height: 1;
-  margin-bottom: 0.65em;
-}
-
-h2 {
-  font-size: var(--font-size-h2);
-}
-
-h3 {
-  font-size: var(--font-size-h3);
-}
-
-h4 {
-  font-size: var(--font-size-h4);
+  margin-bottom: 0;
 }
 
 p,
 li {
-  font-size: var(--font-size-text);
+  /* font-size: var(--font-size-text); */
 }
 
 p {
-  margin: 0 0 1rem;
+  /* margin: 0 0 1rem; */
 }
 
 article .container > ul > li + li,
@@ -210,21 +250,21 @@ header {
   background-repeat: repeat-x;
   background-position: 0 -38px, 17px -40px;
   color: var(--color-primary);
-  text-align: center;
+  text-align: left;
 }
 header .container {
   width: 100%;
   max-width: 120ch;
 }
 header h1 {
-  display: inline-grid;
+  /* display: inline-grid;
   height: 3em;
   padding: 0 1.5em;
   border: 0.16em solid var(--color-primary);
   font-size: 6rem;
   font-size: clamp(2rem, 7vw, 6rem);
   box-shadow: 0.12em 0.12em var(--color-secondary);
-  place-content: center;
+  place-content: center; */
 }
 
 nav ul {
