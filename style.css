@@ -2,42 +2,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,430;1,700&display=swap");
 
 :root {
-  --cabin: "Cabin Variable", sans-serif;
-  --cabin-italic: "Cabin Italic Variable", sans-serif;
-  --cabin-regular: "wght" 94, "wdth" 100;
-  --cabin-medium: "wght" 109, "wdth" 100;
-  --cabin-semibold: "wght" 116, "wdth" 100;
-  --cabin-bold: "wght" 128, "wdth" 100;
-  --cabin-regular-italic: "wght" 95;
-  --cabin-medium-italic: "wght" 106;
-  --cabin-semibold-italic: "wght" 118;
-  --cabin-bold-italic: "wght" 128;
-  /* google variable fonts take normal weight defs */
+  /* google variable fonts take weight defs as weight */
   --lora: "Lora", serif;
   --lora-regular: 400;
   --lora-bold: 700;
   --lora-italic: 458;
-
   --source-sans: "Source Sans Variable", serif;
   --source-sans-italic: "Source Sans Variable Italic", sans-serif;
   --source-sans-bold: "wght" 700;
   --source-sans-normal: "wght" 400;
-
   --font-sans-serif: var(--source-sans);
   --font-serif: var(--lora);
   --small-line-height: 1.2;
   --base-line-height: 1.5;
-
-  --border-radius: 2px;
-
   --spacer: 1.5rem;
-  --color-primary: #3a00ff;
-  --color-secondary: #d42257;
-  --color-background: #d2fbf7;
-  --color-text: #412d86;
-  --color-light: #fff;
-  --color-anchor: #3a00ff;
-
+  --border-radius: 2px;
+  --callout-shape-border: solid 1px var(--callout-outline);
+  --callout-shape-boxshadow: 1px 1px 0px var(--callout-outline);
+  /* colors */
+  --body-bg: #f6f5f1;
+  --white: #ffffff;
+  --pink: #a45a73;
+  --mustard: #dea641;
+  --mustard-light: #f7ebd4;
+  --body-text: #1b253c;
+  --link: #295eff;
+  --link-hover:#2b4da7;
+  --link-visited: #61646b;
+  --link-light: var(--white);
+  --link-light-hover: #faf6df;
+  --link-light-visited: var(--white);
+  --callout-outline: var(--mustard);
 }
 
 /*
@@ -81,14 +76,6 @@ body {
   text-rendering: optimizeSpeed;
   overflow-x: hidden;
   margin: 0;
-  /* display: grid; */
-  /* grid-template:
-	"header header" auto
-	"nav nav" auto
-	"main sidebar" auto
-	"aside aside" auto
-	"footer footer" auto
-	/ 1fr 1fr; */
 }
 
 /* Make images easier to work with */
@@ -116,23 +103,22 @@ select {
 }
 
 body {
-  background-color: white;
-  color: black;
+  background-color: var(--body-bg);
+  color: var(--body-text);
   font-family: var(--font-sans-serif);
+  font-variation-settings: var(--source-sans-normal);
 }
 
 h2, h3, h4 {
-	/* font-feature-settings: "salt"; */
-	  /* font-variation-settings: "wght" 94, "wdth" 50; */
-	  font-variation-settings: var(--source-sans-bold);
+	font-variation-settings: var(--source-sans-bold);
 }
 
 h1 {
 	font-family: var(--lora);
 	font-weight: var(--lora-italic);
 	font-style: italic;
-  	line-height: var(--small-line-height);
-  	font-size: clamp(3rem, 4vw, 4rem);
+  line-height: var(--small-line-height);
+  font-size: clamp(3rem, 4vw, 4rem);
 }
 
 h2 {
@@ -153,7 +139,7 @@ h4 {
 p {
   line-height: var(--base-line-height);
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: var(--lora-regular);
   font-size: clamp(1.25rem, 4vw, 1.5rem);
 }
 
@@ -162,15 +148,24 @@ strong {
 }
 
 a {
-  color: var(--color-anchor);
+  color: var(--link);
+  text-decoration-thickness: 2px;
 }
 
-header {
-	background: black;
-	color: white;
+a:visited {
+  color: var(--link-visited);
 }
 
-header .container {
+a:hover, a:active, a:focus {
+  color: var(--link-hover);
+}
+
+header, .page-footer {
+	background: var(--pink);
+	color: var(--white);
+}
+
+header .container, .page-footer .container {
 	margin-top: 0;
 	box-sizing: content-box;
   margin-left: auto;
@@ -184,11 +179,24 @@ header h2 {
 	font-size: clamp(1.875rem, 4vw, 2.5rem);
 }
 
-header p {
+header p, .page-footer p {
 	font-size: 1rem;
 }
 
-.link-github, .link-twittercontact, .link-rss, .link-support {
+header a, .page-footer a {
+  color: var(--white);
+}
+
+header a:visited, .page-footer a:visited {
+  color: var(--link-light-visited);
+}
+
+header a:hover, a:active, a:focus, .page-footer a:hover, a:active, a:focus {
+  color: var(--link-light-hover);
+}
+
+header a.link-github, a.link-twittercontact, a.link-rss, a.link-support,
+.page-footer a.link-github, a.link-twittercontact, a.link-rss, a.link-support {
 	font-size: 1rem;
 	text-decoration: none;
 	text-align: center;
@@ -196,14 +204,20 @@ header p {
 	position: relative;
 	cursor: pointer;
 	padding: .5em 1em;
-	border: solid 1px white;
-	box-shadow: 1px 1px 0px white;
-	color: white;
+	border: solid 1px var(--white);
+	box-shadow: 1px 1px 0px var(--white);
+	color: var(--white);
 	border-radius: var(--border-radius);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	line-height: 1;
+}
+
+header a.link-github:hover, a.link-twittercontact:hover, a.link-rss:hover, a.link-support:hover,
+.page-footer a.link-github:hover, a.link-twittercontact:hover, a.link-rss:hover, a.link-support:hover {
+  background: var(--link-light-hover);
+  color: var(--pink);
 }
 
 .link-github svg {
@@ -214,16 +228,16 @@ header p {
 }
 
 nav {
-	border-bottom: dotted 3px black;
+	border-bottom: solid 2px var(--pink);
 }
 
 nav ul {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  flex-wrap: wrap;
+  gap: calc(var(--spacer) / 2);
+	justify-content: center;
 	margin: 0;
 	padding: 0;
-	list-style: none;
 	box-sizing: content-box;
 	margin-left: auto;
 	margin-right: auto;
@@ -235,7 +249,15 @@ nav ul a {
   display: inline-grid;
   padding: 0.5rem;
   font-size: 1.25rem;
-  text-decoration: none;
+  color: var(--body);
+}
+
+nav a:visited {
+  color: var(--link-visited);
+}
+
+nav a:hover, a:active, a:focus {
+  color: var(--link-hover);
 }
 
 main {
@@ -254,9 +276,9 @@ main {
 	margin-top: var(--spacer);
 }
 
-/* .container > p {
-	margin-top: calc(var(--spacer) / 2);
-} */
+main > .container {
+  padding: 0 var(--spacer);
+}
 
 blockquote {
   width: 100vw;
@@ -268,8 +290,8 @@ blockquote p {
   max-width: 45rem;
   margin-left: auto;
   margin-right: auto;
-  border: solid 1px black;
-  box-shadow: 1px 1px 0px black;
+  border: solid 1px var(--callout-outline);
+  box-shadow: 1px 1px 0px var(--callout-outline);
   border-radius: 2px;
   padding: var(--spacer);
   font-family: var(--source-sans);
@@ -281,15 +303,13 @@ blockquote p {
   flex-wrap: wrap;
   justify-content: left;
   margin: 1rem 0 2rem;
-  padding: 0;
-	list-style: none;
 }
 
 #about section:nth-child(2) ul li {
 	margin: 0.25em;
 	padding: 0.25em 0.5em;
-	background-color: black;
-	color: white;
+	background-color: var(--pink);
+	color: var(--white);
 	border-radius: var(--border-radius);
 }
 
@@ -303,8 +323,8 @@ blockquote p {
   max-width: 45rem;
   margin-left: auto;
   margin-right: auto;
-  border: solid 1px black;
-  box-shadow: 1px 1px 0px black;
+  border: solid 1px var(--callout-outline);
+  box-shadow: 1px 1px 0px var(--callout-outline);
   border-radius: 2px;
   padding: var(--spacer);
 }
@@ -322,9 +342,15 @@ blockquote p {
 	position: relative;
 	cursor: pointer;
 	padding: .5em 1em;
-	background-color: black;
-	color: white;
+	background-color: transparent;
+  color: var(--body-text);
+  border: solid 1px var(--body-text);
+  box-shadow: 1px 1px 0px var(--body-text);
 	border-radius: var(--border-radius);
+}
+
+.link-guidelines:hover {
+  background-color: var(--mustard-light);
 }
 
 #contribute ol {
@@ -361,8 +387,8 @@ blockquote p {
   max-width: 45rem;
   margin-left: auto;
   margin-right: auto;
-  border: solid 1px black;
-  box-shadow: 1px 1px 0px black;
+  border: solid 1px var(--callout-outline);
+  box-shadow: 1px 1px 0px var(--callout-outline);
   border-radius: var(--border-radius);
   padding: var(--spacer);
   text-align: center;
@@ -376,9 +402,13 @@ blockquote p {
 	position: relative;
 	cursor: pointer;
 	padding: .5em 1em;
-	background-color: black;
-	color: white;
+	background-color: var(--body-text);
+	color: var(--white);
 	border-radius: var(--border-radius);
+}
+
+#files a:not(.link-codepen):hover {
+  background-color: var(--link-hover);
 }
 
 .link-codepen {
@@ -400,7 +430,6 @@ blockquote p {
 }
 
 .profile .container > a {
-  /* min-height: 2em; */
   font-size: 1rem;
 	text-decoration: none;
 	text-align: center;
@@ -408,10 +437,14 @@ blockquote p {
 	position: relative;
 	cursor: pointer;
 	padding: .5em 1em;
-	background-color: black;
-	color: white;
-  border-radius: var(--border-radius);
+	background-color: var(--body-text);
+	color: var(--white);
+	border-radius: var(--border-radius);
   margin-top: calc(var(--spacer) / 2);
+}
+
+.profile .container > a:hover {
+  background-color: var(--link-hover);
 }
 
 .profile ul {
@@ -419,8 +452,6 @@ blockquote p {
   flex-wrap: wrap;
   justify-content: center;
   margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 .profile ul li {
@@ -450,11 +481,11 @@ blockquote p {
     bottom: 2vmin;
     max-width: 35ch;
     margin-bottom: 0;
-    border: solid 1px black;
-    box-shadow: 1px 1px 0px black;
+    border: solid 1px var(--callout-outline);
+    box-shadow: 1px 1px 0px var(--callout-outline);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 5px rgba(58, 0, 255, 0.15);
-    background-color: white;
+    background-color: var(--white);
   }
 
   .profile .container {
@@ -476,23 +507,18 @@ blockquote p {
   }
 }
 
-/* @media (hover: hover) and (pointer: fine) {
-	#files a {
-		padding: 2px 12px;
-	}
-} */
-
 #styles {
   box-sizing: content-box;
   margin-left: auto;
   margin-right: auto;
   max-width: 80ch;
-  border-top: solid 1px black;
+  border-top: solid 1px var(--callout-outline);
 }
 
 #styles .container {
   display: flex;
   flex-direction: column;
+  padding: 0 var(--spacer);
 }
 
 #styles ul {
@@ -523,23 +549,13 @@ blockquote p {
 
 .page-footer {
   margin-top: var(--spacer);
-	background: black;
-	color: white;
-}
-
-.page-footer .container {
-	margin-top: 0;
-	box-sizing: content-box;
-  margin-left: auto;
-  margin-right: auto;
-	max-width: 80ch;
-	padding: var(--spacer);
 }
 
 .page-footer ul {
   display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+  justify-content: space-between;
+  gap: calc(var(--spacer) / 2);
 }
 
 .skip-link {
