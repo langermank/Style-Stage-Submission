@@ -106,7 +106,6 @@ body {
   background-color: var(--body-bg);
   color: var(--body-text);
   font-family: var(--font-sans-serif);
-  font-variation-settings: var(--source-sans-normal);
 }
 
 h2, h3, h4 {
@@ -555,7 +554,10 @@ blockquote p {
   display: flex;
 	flex-wrap: wrap;
   justify-content: space-between;
-  gap: calc(var(--spacer) / 2);
+}
+
+.page-footer ul li {
+  margin-bottom: calc(var(--spacer) / 2);
 }
 
 .skip-link {
@@ -568,6 +570,10 @@ blockquote p {
   color: #fff;
   font-size: 1.125rem;
   overflow: hidden;
+}
+
+a.skip-link {
+  color: #fff;
 }
 
 .skip-link:focus {
